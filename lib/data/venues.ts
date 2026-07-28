@@ -12584,18 +12584,18 @@ const CATEGORY_OCCASIONS: Record<Exclude<Category, "All Spaces">, Occasion[]> = 
   Meeting: ["Conference", "Corporate Event"],
 };
 
-function inferCategory(name: string): Exclude<Category, "All Spaces"> {
+export function inferCategory(name: string): Exclude<Category, "All Spaces"> {
   const lower = name.toLowerCase();
   const match = CATEGORY_KEYWORDS.find(([keyword]) => lower.includes(keyword));
   return match ? match[1] : "Venue";
 }
 
-function inferTags(name: string): string[] {
+export function inferTags(name: string): string[] {
   const lower = name.toLowerCase();
   return TAG_KEYWORDS.filter((tag) => lower.includes(tag.toLowerCase()));
 }
 
-function inferOccasions(name: string, category: Exclude<Category, "All Spaces">): Occasion[] {
+export function inferOccasions(name: string, category: Exclude<Category, "All Spaces">): Occasion[] {
   const lower = name.toLowerCase();
   const fromName = OCCASION_KEYWORDS.filter(([kw]) => lower.includes(kw)).map(([, o]) => o);
   return Array.from(new Set([...fromName, ...CATEGORY_OCCASIONS[category]]));
@@ -12603,7 +12603,7 @@ function inferOccasions(name: string, category: Exclude<Category, "All Spaces">)
 
 // package_pricing entries carry guest_count / extra_guest_count deep inside
 // pricing_type_details; there's no flat capacity field, so we walk the tree.
-function extractGuestCounts(value: unknown, acc: number[] = []): number[] {
+export function extractGuestCounts(value: unknown, acc: number[] = []): number[] {
   if (value == null) return acc;
   if (Array.isArray(value)) {
     for (const item of value) extractGuestCounts(item, acc);
@@ -12621,7 +12621,7 @@ function extractGuestCounts(value: unknown, acc: number[] = []): number[] {
   return acc;
 }
 
-function inferCapacity(entry: ApiVenueEntry): number | null {
+export function inferCapacity(entry: ApiVenueEntry): number | null {
   const counts = extractGuestCounts(entry.pricing);
   return counts.length > 0 ? Math.max(...counts) : null;
 }
