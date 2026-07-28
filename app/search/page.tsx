@@ -1,39 +1,50 @@
-import { SearchTopbar } from "@/components/search/search-topbar";
+import { Navbar } from "@/components/layout/navbar";
 import { SearchHeader } from "@/components/search/search-header";
-import { FilterBar } from "@/components/search/filter-bar";
-import { VenueCard } from "@/components/search/venue-card";
-import { MapPanel } from "@/components/search/map-panel";
+import { SearchContent } from "@/components/search/search-content";
 import { venues } from "@/lib/data/venues";
+import type { Category } from "@/types/venue";
 
-export default function SearchPage() {
+interface SearchPageProps {
+  searchParams: Promise<{
+    where?: string;
+    when?: string;
+    guests?: string;
+    type?: string;
+    sort?: string;
+    category?: string;
+  }>;
+}
+
+export default async function SearchPage({ searchParams }: SearchPageProps) {
+  const params = await searchParams;
+  const where = params.where ?? "London, UK";
+  const when = params.when;
+  const guests = params.guests;
+  const category = (params.category as Category) || "All Spaces";
+  const city = where.split(",")[0].trim();
+
+  const filtered = venues.filter((v) => {
+    const cityMatch = v.city.toLowerCase() === city.toLowerCase();
+    const categoryMatch = category === "All Spaces" || v.category === category;
+    return cityMatch && categoryMatch;
+  });
+
+  const label =
+    category === "All Spaces" ? "venues" : `${category.toLowerCase()} spaces`;
+
   return (
     <main className="min-h-dvh bg-white">
-      <SearchTopbar />
+      <Navbar
+        variant="solid"
+        showSearchPill
+        where={where}
+        when={when}
+        guests={guests}
+      />
       <SearchHeader />
-      <FilterBar />
 
-      <div className="flex gap-6 px-6 pb-10">
-        <div className="flex-1">
-          <p className="mb-4 text-sm text-black">
-            {venues.length} photo studios near London
-          </p>
-
-          {venues.length === 0 ? (
-            <div className="flex flex-col items-center gap-2 rounded-[10px] border border-dashed border-[#e5e5e5] py-24 text-center">
-              <p className="text-base font-medium text-black">No venues found</p>
-              <p className="text-sm text-[#808080]">Try adjusting your filters.</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
-              {venues.map((venue) => (
-                <VenueCard key={venue.id} venue={venue} />
-              ))}
-            </div>
-          )}
-        </div>
-
-        <MapPanel />
-      </div>
+      <SearchContent venues={filtered} label={label} city={city} />
     </main>
   );
 }
+

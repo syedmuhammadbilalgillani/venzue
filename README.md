@@ -8,11 +8,15 @@ A venue and vendor booking platform built for the Hashed System Next.js + TypeSc
 pnpm install
 ```
 
-Create `.env.local` in the project root with a reqres.in API key (reqres.in now requires a registered key — get a free one at [app.reqres.in/api-keys](https://app.reqres.in/api-keys)):
+Create `.env.local` in the project root with:
 
 ```
 NEXT_PUBLIC_REQRES_API_KEY=your_key_here
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_key_here
 ```
+
+- `NEXT_PUBLIC_REQRES_API_KEY` — reqres.in now requires a registered key; get a free one at [app.reqres.in/api-keys](https://app.reqres.in/api-keys).
+- `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` — powers the map on the search page ([@react-google-maps/api](https://www.npmjs.com/package/@react-google-maps/api)). Get a key from the [Google Cloud Console](https://console.cloud.google.com/google/maps-apis/credentials) with the **Maps JavaScript API** enabled. Without it, the map panel shows a placeholder instead of erroring.
 
 Then run the dev server:
 

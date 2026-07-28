@@ -4,7 +4,7 @@ import "./globals.css";
 import { Providers } from "@/components/providers";
 
 const poppins = Poppins({
-  variable: "--font-poppins",
+  variable: "--font-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -21,11 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        suppressContentEditableWarning
-        className={`${poppins.variable} antialiased font-sans`}
-      >
+    <html lang="en" className={poppins.variable}>
+      <body suppressContentEditableWarning className="antialiased font-sans">
         <Providers>{children}</Providers>
       </body>
     </html>
