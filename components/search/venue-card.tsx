@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useFavoritesStore } from "@/store/favorites-store";
+import { useToggleFavorite } from "@/lib/hooks/use-toggle-favorite";
 import type { Venue } from "@/types/venue";
 import {
   Dialog,
@@ -29,7 +30,7 @@ function PriceLabel({ venue }: { venue: Venue }) {
 
 export function VenueCard({ venue }: { venue: Venue }) {
   const isFavorite = useFavoritesStore((s) => s.isFavorite(venue.id));
-  const toggleFavorite = useFavoritesStore((s) => s.toggleFavorite);
+  const { mutate: toggleFavorite } = useToggleFavorite();
   const stats = [
     venue.guests && {
       icon: "/images/icon-guests.svg",

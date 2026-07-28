@@ -44,3 +44,9 @@ next-env.d.ts
 .claude
 rules.md
 .tmp
+
+# test artifacts
+/test-results
+/playwright-report
+/blob-report
+/playwright/.cache

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FilterBar } from "@/components/search/filter-bar";
 import { VenueCard } from "@/components/search/venue-card";
 import { MapPanel } from "@/components/search/map-panel";
+import { ErrorBoundary } from "@/components/error-boundary";
 import NoDataIcon from "@/components/icons/no-data";
 import type { Venue } from "@/types/venue";
 import { MapIcon, ListIcon } from "lucide-react";
@@ -60,12 +61,14 @@ export function SearchContent({ venues, label, city }: SearchContentProps) {
             : "hidden lg:block"
         }`}
       >
-        <MapPanel
-          venues={venues}
-          isExpanded={isMapExpanded}
-          onToggleExpand={() => setIsMapExpanded(!isMapExpanded)}
-          forceVisible={mobileView === "map"}
-        />
+        <ErrorBoundary title="Map failed to load" message="Try refreshing the page.">
+          <MapPanel
+            venues={venues}
+            isExpanded={isMapExpanded}
+            onToggleExpand={() => setIsMapExpanded(!isMapExpanded)}
+            forceVisible={mobileView === "map"}
+          />
+        </ErrorBoundary>
       </div>
 
       <button
