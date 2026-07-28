@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Navbar } from "@/components/layout/navbar";
 import { HeroSearchField } from "@/components/landing/hero-search-field";
+import IconVenue from "@/components/icons/icon-venue";
+import IconVendor from "@/components/icons/icon-vendor";
 
 const WHERE_OPTIONS = ["Dubai, UAE", "Abu Dhabi, UAE", "Sharjah, UAE"] as const;
 const WHEN_OPTIONS = [
@@ -57,12 +59,7 @@ export function Hero() {
                   tab === "venue" ? "bg-[#ff5037] text-white" : "text-black"
                 }`}
               >
-                <Image
-                  src="/images/icon-venue.svg"
-                  alt=""
-                  width={20}
-                  height={20}
-                />
+                <IconVenue active={tab === "venue"} />
                 Venue
               </button>
               <button
@@ -71,12 +68,7 @@ export function Hero() {
                   tab === "vendors" ? "bg-[#ff5037] text-white" : "text-black"
                 }`}
               >
-                <Image
-                  src="/images/icon-vendors.svg"
-                  alt=""
-                  width={24}
-                  height={24}
-                />
+                <IconVendor active={tab === "vendors"} />
                 Vendors
               </button>
             </div>
