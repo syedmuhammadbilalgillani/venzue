@@ -139,7 +139,7 @@ export function FiltersSheet() {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
         render={
-          <button className="relative flex shrink-0 items-center gap-1.5 rounded-[10px] px-5 py-2.5 text-base text-black transition-colors hover:bg-[#f4f4f4]" />
+          <div className="relative cursor-pointer flex shrink-0 items-center gap-1.5 rounded-[10px] py-2.5 lg:px-5 px-0 text-base text-black transition-colors hover:bg-[#f4f4f4]" />
         }
       >
         <Image src="/images/icon-filter.png" alt="" width={16} height={16} />

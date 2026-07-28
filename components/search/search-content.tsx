@@ -26,8 +26,8 @@ export function SearchContent({ venues, label, city }: SearchContentProps) {
           mobileView === "map" ? "hidden lg:block" : "block"
         }`}
       >
-        <div className="flex items-center">
-          <p className="text-sm text-black text-nowrap">
+        <div className="flex lg:flex-nowrap flex-wrap justify-center items-center">
+          <p className="text-sm text-black text-nowrap pt-2">
             {venues.length} {label} near {city}
           </p>
           <FilterBar />
@@ -61,7 +61,10 @@ export function SearchContent({ venues, label, city }: SearchContentProps) {
             : "hidden lg:block"
         }`}
       >
-        <ErrorBoundary title="Map failed to load" message="Try refreshing the page.">
+        <ErrorBoundary
+          title="Map failed to load"
+          message="Try refreshing the page."
+        >
           <MapPanel
             venues={venues}
             isExpanded={isMapExpanded}

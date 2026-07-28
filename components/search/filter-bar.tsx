@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/select";
 import { ChevronDown, X } from "lucide-react";
 
-const initialChips = ["Verified", "2,000+ m²"];
+const initialChips = [""];
 
 const SORT_OPTIONS = [
   "Recommended",
@@ -39,7 +39,7 @@ export function FilterBar() {
   };
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 px-6 py-4 w-full">
+    <div className="flex items-center justify-between gap-3 px-6 py-4 w-full">
       <div className="scrollbar-none flex items-center gap-1.5 overflow-x-auto">
         {chips.map((chip) => (
           <button
@@ -63,8 +63,9 @@ export function FilterBar() {
 
       <Select value={sort} onValueChange={handleSortChange}>
         <SelectTrigger className="h-auto w-fit gap-1.5 rounded-full border-[1.5px] border-[#e6e6e6] bg-white px-4 py-2 text-[11px] text-[#333] outline-none transition-colors hover:border-[#ff5037] focus-visible:ring-0 [&>svg]:hidden">
-          <span>
-            Sort by: <SelectValue className="inline" />
+          <span className="flex gap-2">
+            <span className="lg:block hidden">Sort by: </span>
+            <SelectValue className="inline" />
           </span>
           <span aria-hidden>
             <ChevronDown />

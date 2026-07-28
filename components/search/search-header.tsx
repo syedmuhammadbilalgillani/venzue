@@ -30,18 +30,20 @@ export function SearchHeader() {
 
   return (
     <div className="sticky top-0 z-20 bg-white">
-      <div className="flex h-[50px] items-center gap-2.5 border-b border-[#d0d0d0] px-6">
-        <Image
-          src="/images/icon-search-gray.svg"
-          alt=""
-          width={24}
-          height={24}
-        />
-        <input
-          type="text"
-          placeholder="Add keywords..."
-          className="h-full flex-1 text-base text-black outline-none placeholder:text-[#a39e9e]"
-        />
+      <div className="flex h-[50px] items-center justify-between gap-2.5 border-b border-[#d0d0d0] px-6 ">
+        <div className="flex w-full items-center gap-2">
+          <Image
+            src="/images/icon-search-gray.svg"
+            alt=""
+            width={24}
+            height={24}
+          />
+          <input
+            type="text"
+            placeholder="Add keywords..."
+            className="h-full  text-base w-full  text-black outline-none placeholder:text-[#a39e9e]"
+          />
+        </div>
         <FiltersSheet />
       </div>
 
