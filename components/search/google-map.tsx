@@ -86,7 +86,7 @@ export function GoogleMapView({ venues }: { venues: Venue[] }) {
       </GoogleMap>
 
       {selected && (
-        <div className="pointer-events-none absolute left-1/2 top-6 z-[10] w-[240px] -translate-x-1/2">
+        <div className="pointer-events-none absolute left-1/2 top-6 z-[10] w-60 -translate-x-1/2">
           <div className="pointer-events-auto overflow-hidden rounded-[16px] bg-white shadow-xl">
             <div className="relative h-[150px] w-full">
               <Image

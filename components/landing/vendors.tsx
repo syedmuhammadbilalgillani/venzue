@@ -11,14 +11,15 @@ const vendors = [
 
 export function Vendors() {
   return (
-    <section className="bg-[#fdf1d2] px-5 py-16 md:px-8 lg:px-[121px] lg:py-[75px]">
+    <section className="bg-[#fdf1d2] px-5 py-16 md:px-8 lg:px-[121px] lg:pt-18  lg:pb-38">
       <div className="mx-auto mb-10 max-w-[1200px] text-center lg:mb-[70px]">
         <h2 className="text-[28px] font-semibold leading-tight text-black md:text-[36px] lg:text-[44px] lg:leading-[50px]">
           Complete Your Event with our Trusted Vendors
         </h2>
         <p className="mt-2.5 text-base text-black md:text-lg lg:text-[20px] lg:leading-[30px]">
-          Venues are just the beginning. Discover caterers, decorators, photographers,
-          entertainment, and more all in one place, ready to bring your event project to life.
+          Venues are just the beginning. Discover caterers, decorators,
+          photographers, entertainment, and more all in one place, ready to
+          bring your event project to life.
         </p>
       </div>
 
@@ -26,7 +27,7 @@ export function Vendors() {
         {vendors.map((v) => (
           <button
             key={v.title}
-            className="group relative h-[320px] w-[240px] shrink-0 snap-start overflow-hidden rounded-[20px] border border-white/30 text-left md:h-[360px] md:w-[270px] lg:h-[400px] lg:w-full"
+            className="group relative h-80 w-60 shrink-0 snap-start overflow-hidden rounded-[20px] border border-white/30 text-left md:h-[360px] md:w-[270px] lg:h-[400px] lg:w-full"
           >
             <Image
               src={v.image}
@@ -47,13 +48,23 @@ export function Vendors() {
           aria-label="Previous"
           className="flex size-[42px] items-center justify-center rounded-full bg-[#f4f4f4] shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)] transition-opacity hover:opacity-80"
         >
-          <Image src="/images/icon-chevron-left.svg" alt="" width={30} height={30} />
+          <Image
+            src="/images/icon-chevron-left.svg"
+            alt=""
+            width={30}
+            height={30}
+          />
         </button>
         <button
           aria-label="Next"
           className="flex size-[42px] items-center justify-center rounded-full bg-[#f4f4f4] shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)] transition-opacity hover:opacity-80"
         >
-          <Image src="/images/icon-chevron-right.svg" alt="" width={30} height={30} />
+          <Image
+            src="/images/icon-chevron-right.svg"
+            alt=""
+            width={30}
+            height={30}
+          />
         </button>
       </div>
     </section>

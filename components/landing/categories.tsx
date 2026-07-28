@@ -3,10 +3,26 @@
 import Image from "next/image";
 
 const categories = [
-  { title: "Celebration Venues", count: "37 Venues", image: "/images/cat-celebration.jpg" },
-  { title: "Private Party Venues", count: "37 Venues", image: "/images/cat-private-party.jpg" },
-  { title: "Corporate Meetings", count: "37 Venues", image: "/images/cat-corporate.jpg" },
-  { title: "Creative Studios", count: "37 Venues", image: "/images/cat-creative.jpg" },
+  {
+    title: "Celebration Venues",
+    count: "37 Venues",
+    image: "/images/cat-celebration.jpg",
+  },
+  {
+    title: "Private Party Venues",
+    count: "37 Venues",
+    image: "/images/cat-private-party.jpg",
+  },
+  {
+    title: "Corporate Meetings",
+    count: "37 Venues",
+    image: "/images/cat-corporate.jpg",
+  },
+  {
+    title: "Creative Studios",
+    count: "37 Venues",
+    image: "/images/cat-creative.jpg",
+  },
 ];
 
 export function Categories() {
@@ -17,9 +33,9 @@ export function Categories() {
           Find The Best Venue For Any Occasion
         </h2>
         <p className="text-base text-black md:text-lg lg:text-[20px] lg:leading-[30px]">
-          Explore venues by category, from timeless ballrooms and rooftops with a view to
-          modern studios and outdoor gardens, discover spaces designed to inspire
-          unforgettable experiences.
+          Explore venues by category, from timeless ballrooms and rooftops with
+          a view to modern studios and outdoor gardens, discover spaces designed
+          to inspire unforgettable experiences.
         </p>
       </div>
 
@@ -27,7 +43,7 @@ export function Categories() {
         {categories.map((cat) => (
           <button
             key={cat.title}
-            className="group relative h-[320px] w-[240px] shrink-0 snap-start overflow-hidden rounded-[20px] text-left md:h-[360px] md:w-[270px] lg:h-[400px] lg:w-full"
+            className="group relative h-80 w-60 shrink-0 snap-start overflow-hidden rounded-[20px] text-left md:h-[360px] md:w-[270px] lg:h-[400px] lg:w-full"
           >
             <Image
               src={cat.image}
@@ -51,13 +67,23 @@ export function Categories() {
           aria-label="Previous"
           className="flex size-[42px] items-center justify-center rounded-full bg-[#f4f4f4] shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)] transition-opacity hover:opacity-80"
         >
-          <Image src="/images/icon-chevron-left.svg" alt="" width={30} height={30} />
+          <Image
+            src="/images/icon-chevron-left.svg"
+            alt=""
+            width={30}
+            height={30}
+          />
         </button>
         <button
           aria-label="Next"
           className="flex size-[42px] items-center justify-center rounded-full bg-[#f4f4f4] shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)] transition-opacity hover:opacity-80"
         >
-          <Image src="/images/icon-chevron-right.svg" alt="" width={30} height={30} />
+          <Image
+            src="/images/icon-chevron-right.svg"
+            alt=""
+            width={30}
+            height={30}
+          />
         </button>
       </div>
     </section>

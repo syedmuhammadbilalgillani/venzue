@@ -26,10 +26,10 @@ export function Path() {
           Your Path to the Perfect Venue
         </h2>
         <p className="mt-2.5 text-base text-black md:text-lg lg:text-[20px] lg:leading-[30px]">
-          Planning an event, production, or gathering shouldn&apos;t feel complicated. Our
-          streamlined process connects you with the right venues and trusted professionals,
-          taking the stress out of logistics so you can focus on what matters most making it a
-          success.
+          Planning an event, production, or gathering shouldn&apos;t feel
+          complicated. Our streamlined process connects you with the right
+          venues and trusted professionals, taking the stress out of logistics
+          so you can focus on what matters most making it a success.
         </p>
       </div>
 
@@ -70,25 +70,23 @@ export function Path() {
         </div>
 
         <div className="flex w-full max-w-[523px] gap-6">
-          <div className="relative flex flex-col items-center gap-[103px] pt-1.5">
-            <div className="h-3.5 w-px bg-[#e5e5e5]" />
-            {steps.map((s) => (
-              <span
-                key={s.n}
-                className="absolute flex size-[50px] items-center justify-center rounded-full bg-[#ff5037] text-xl font-bold text-white"
-                style={{ top: `${s.n === 1 ? 0 : s.n === 2 ? 153 : 306}px` }}
-              >
-                {s.n}
-              </span>
-            ))}
-          </div>
-          <div className="flex flex-1 flex-col gap-10">
-            {steps.map((s) => (
-              <div key={s.n} className="flex flex-col gap-2.5">
-                <h3 className="text-2xl font-semibold tracking-[-0.72px] text-black">
-                  {s.title}
-                </h3>
-                <p className="text-base leading-6 tracking-[-0.48px] text-black">{s.body}</p>
+          <div className="flex flex-col gap-10 md:mt-10">
+            {steps?.map((v, i) => (
+              <div className="relative">
+                <div
+                  className={`absolute left-6 top-10 w-0.5 h-full border border-gray-400 border-dashed ${i === steps.length - 1 ? "hidden" : ""} `}
+                ></div>
+                <div className="flex gap-6 group">
+                  <div className="relative">
+                    <div className="bg-gradient-to-r from-[#ff786a] via-[#ff4f37] to-[#ffc331] w-12 h-12 rounded-full  flex items-center justify-center text-white font-bold text-xl shadow-lg transition-transform duration-300">
+                      {v.n}
+                    </div>
+                  </div>
+                  <div className="flex-1 text-black">
+                    <h3 className="text-2xl font-semibold mb-3 ">{v.title}</h3>
+                    <p className="leading-relaxed">{v.body}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
