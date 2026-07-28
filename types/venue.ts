@@ -14,6 +14,22 @@ export const categories = [
 
 export type Category = (typeof categories)[number];
 
+export const occasions = [
+  "Wedding",
+  "Reception",
+  "Ceremony",
+  "Engagement",
+  "Birthday",
+  "Corporate Event",
+  "Conference",
+  "Concert/Performance",
+  "Brand Launch",
+  "Fashion Show",
+  "Pop-up",
+] as const;
+
+export type Occasion = (typeof occasions)[number];
+
 export interface Venue {
   id: string;
   title: string;
@@ -33,6 +49,8 @@ export interface Venue {
   lat: number;
   lng: number;
   tags: string[];
+  capacity: number | null;
+  occasions: Occasion[];
 }
 
 export interface ApiVenueEntry {

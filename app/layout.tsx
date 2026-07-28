@@ -22,7 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={poppins.variable}>
-      <body suppressContentEditableWarning className="antialiased font-sans">
+      <body
+        suppressContentEditableWarning
+        suppressHydrationWarning
+        className="antialiased font-sans"
+      >
         <Providers>{children}</Providers>
       </body>
     </html>

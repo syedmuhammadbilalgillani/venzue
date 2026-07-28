@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { LoginDialog } from "@/components/auth/login-dialog";
+import { ChevronDown } from "lucide-react";
 
 interface NavbarProps {
   variant: "transparent" | "solid";
@@ -52,12 +53,19 @@ export function Navbar({
           <span className="h-4 w-px bg-[#d9d9d9]" />
           <span className="text-sm font-medium text-black">{when}</span>
           <span className="h-4 w-px bg-[#d9d9d9]" />
-          <span className="text-sm font-medium text-black">{guests} Guests</span>
+          <span className="text-sm font-medium text-black">
+            {guests} Guests
+          </span>
           <button
             aria-label="Search"
             className="flex size-9 items-center justify-center rounded-[10px] bg-[#ff5037] transition-opacity hover:opacity-90"
           >
-            <Image src="/images/search-topbar-search.svg" alt="" width={19} height={19} />
+            <Image
+              src="/images/search-topbar-search.svg"
+              alt=""
+              width={19}
+              height={19}
+            />
           </button>
         </div>
       )}
@@ -65,16 +73,25 @@ export function Navbar({
       <div className="flex items-center gap-2 md:gap-2.75">
         <button className="hidden items-center gap-1.5 rounded-[10px] border border-[#ffd6cf] bg-white px-4 py-2.5 text-sm font-semibold text-[#ff5037] transition-colors hover:bg-[#fff5f3] md:flex">
           Add your listing
-          <span aria-hidden className="text-xs">▾</span>
+          <span aria-hidden className="text-xs">
+            <ChevronDown color="gray" size={18} />
+          </span>
         </button>
         <button className="flex items-center gap-1.5 rounded-[10px] border border-[#ffd6cf] bg-white px-3 py-2.5 text-sm font-semibold text-[#ff5037] transition-colors hover:bg-[#fff5f3]">
           EN
-          <span aria-hidden className="text-xs">▾</span>
+          <span aria-hidden className="text-xs">
+            <ChevronDown color="gray" size={18} />
+          </span>
         </button>
         <LoginDialog
           trigger={
             <span className="flex size-10 items-center justify-center rounded-full border border-[#ffd6cf] bg-white text-[#ff5037] transition-colors hover:bg-[#fff5f3]">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
                 <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-3.33 0-10 1.67-10 5v3h20v-3c0-3.33-6.67-5-10-5z" />
               </svg>
             </span>

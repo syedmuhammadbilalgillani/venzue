@@ -6,8 +6,6 @@ import { useState } from "react";
 import { Navbar } from "@/components/layout/navbar";
 import { HeroSearchField } from "@/components/landing/hero-search-field";
 
-const dots = [0, 1, 2, 3];
-
 const WHERE_OPTIONS = ["Dubai, UAE", "Abu Dhabi, UAE", "Sharjah, UAE"] as const;
 const WHEN_OPTIONS = [
   "Anytime",
@@ -19,7 +17,6 @@ const GUESTS_OPTIONS = ["1-5", "5-10", "10-20", "20-50", "50+"] as const;
 
 export function Hero() {
   const router = useRouter();
-  const [activeDot, setActiveDot] = useState(1);
   const [tab, setTab] = useState<"venue" | "vendors">("venue");
   const [where, setWhere] = useState<string>(WHERE_OPTIONS[0]);
   const [when, setWhen] = useState<string>(WHEN_OPTIONS[0]);

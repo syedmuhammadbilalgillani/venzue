@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { categories, type Category } from "@/types/venue";
 import { CategoryIcon } from "@/components/search/category-icon";
+import { FiltersSheet } from "@/components/search/filters-sheet";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 export function SearchHeader() {
@@ -41,10 +42,7 @@ export function SearchHeader() {
           placeholder="Add keywords..."
           className="h-full flex-1 text-base text-black outline-none placeholder:text-[#a39e9e]"
         />
-        <button className="flex shrink-0 items-center gap-1.5 rounded-[10px] px-5 py-2.5 text-base text-black transition-colors hover:bg-[#f4f4f4]">
-          <Image src="/images/icon-filter.svg" alt="" width={16} height={16} />
-          Filters
-        </button>
+        <FiltersSheet />
       </div>
 
       <div className="flex items-center gap-2 border-b border-[#d0d0d0] px-3 py-3">

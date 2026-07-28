@@ -1,4 +1,4 @@
-import type { ApiVenueEntry, Venue, Category } from "@/types/venue";
+import type { ApiVenueEntry, Venue, Category, Occasion } from "@/types/venue";
 
 export const data = {
   success: true,
@@ -12553,6 +12553,37 @@ const CATEGORY_KEYWORDS: [string, Exclude<Category, "All Spaces">][] = [
 
 const TAG_KEYWORDS = ["Rooftop", "Gallery", "Restaurant", "Outdoor", "Studio", "terrace", "ballroom"];
 
+const OCCASION_KEYWORDS: [string, Occasion][] = [
+  ["wedding", "Wedding"],
+  ["reception", "Reception"],
+  ["ceremony", "Ceremony"],
+  ["engagement", "Engagement"],
+  ["birthday", "Birthday"],
+  ["corporate", "Corporate Event"],
+  ["conference", "Conference"],
+  ["concert", "Concert/Performance"],
+  ["performance", "Concert/Performance"],
+  ["launch", "Brand Launch"],
+  ["fashion show", "Fashion Show"],
+  ["pop-up", "Pop-up"],
+  ["popup", "Pop-up"],
+];
+
+// The real dataset has no explicit occasion field, so keyword matches on the
+// venue name are supplemented with sensible defaults per inferred category.
+const CATEGORY_OCCASIONS: Record<Exclude<Category, "All Spaces">, Occasion[]> = {
+  "Photo Studio": ["Brand Launch", "Fashion Show"],
+  "Film Studio": ["Concert/Performance", "Brand Launch"],
+  Warehouse: ["Concert/Performance", "Fashion Show", "Pop-up", "Brand Launch"],
+  Gallery: ["Brand Launch", "Fashion Show", "Pop-up"],
+  Restaurant: ["Reception", "Birthday", "Corporate Event"],
+  Apartment: ["Birthday", "Engagement"],
+  "Office Space": ["Corporate Event", "Conference"],
+  Venue: ["Wedding", "Reception", "Corporate Event", "Conference", "Concert/Performance"],
+  "Private Party": ["Wedding", "Reception", "Birthday", "Engagement"],
+  Meeting: ["Conference", "Corporate Event"],
+};
+
 function inferCategory(name: string): Exclude<Category, "All Spaces"> {
   const lower = name.toLowerCase();
   const match = CATEGORY_KEYWORDS.find(([keyword]) => lower.includes(keyword));
@@ -12564,8 +12595,40 @@ function inferTags(name: string): string[] {
   return TAG_KEYWORDS.filter((tag) => lower.includes(tag.toLowerCase()));
 }
 
+function inferOccasions(name: string, category: Exclude<Category, "All Spaces">): Occasion[] {
+  const lower = name.toLowerCase();
+  const fromName = OCCASION_KEYWORDS.filter(([kw]) => lower.includes(kw)).map(([, o]) => o);
+  return Array.from(new Set([...fromName, ...CATEGORY_OCCASIONS[category]]));
+}
+
+// package_pricing entries carry guest_count / extra_guest_count deep inside
+// pricing_type_details; there's no flat capacity field, so we walk the tree.
+function extractGuestCounts(value: unknown, acc: number[] = []): number[] {
+  if (value == null) return acc;
+  if (Array.isArray(value)) {
+    for (const item of value) extractGuestCounts(item, acc);
+    return acc;
+  }
+  if (typeof value === "object") {
+    for (const [key, val] of Object.entries(value as Record<string, unknown>)) {
+      if ((key === "guest_count" || key === "extra_guest_count") && typeof val === "number") {
+        acc.push(val);
+      } else {
+        extractGuestCounts(val, acc);
+      }
+    }
+  }
+  return acc;
+}
+
+function inferCapacity(entry: ApiVenueEntry): number | null {
+  const counts = extractGuestCounts(entry.pricing);
+  return counts.length > 0 ? Math.max(...counts) : null;
+}
+
 function mapApiVenue(entry: ApiVenueEntry): Venue {
   const { location, pricing } = entry;
+  const category = inferCategory(entry.venue_name);
   return {
     id: entry.venue_slug,
     title: entry.venue_name,
@@ -12573,7 +12636,7 @@ function mapApiVenue(entry: ApiVenueEntry): Venue {
     location: entry.property?.property_name
       ? `${entry.property.property_name}, ${location.city}`
       : `${location.street_address}`,
-    category: inferCategory(entry.venue_name),
+    category,
     pricePerHour: pricing?.hourly_rate ?? null,
     currency: pricing?.currency?.symbol ?? pricing?.currency?.code,
     verified: true,
@@ -12581,7 +12644,20 @@ function mapApiVenue(entry: ApiVenueEntry): Venue {
     lat: location.latitude,
     lng: location.longitude,
     tags: inferTags(entry.venue_name),
+    capacity: inferCapacity(entry),
+    occasions: inferOccasions(entry.venue_name, category),
   };
 }
 
 export const venues: Venue[] = data.data.map(mapApiVenue);
+
+const definedPrices = venues.map((v) => v.pricePerHour).filter((p): p is number => p != null);
+const definedCapacities = venues.map((v) => v.capacity).filter((c): c is number => c != null);
+
+export const PRICE_BOUNDS: [number, number] = definedPrices.length
+  ? [0, Math.ceil(Math.max(...definedPrices) / 1000) * 1000]
+  : [0, 1000];
+
+export const CAPACITY_BOUNDS: [number, number] = definedCapacities.length
+  ? [0, Math.ceil(Math.max(...definedCapacities) / 10) * 10]
+  : [0, 300];

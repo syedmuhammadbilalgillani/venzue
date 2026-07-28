@@ -72,7 +72,7 @@ export function Path() {
         <div className="flex w-full max-w-[523px] gap-6">
           <div className="flex flex-col gap-10 md:mt-10">
             {steps?.map((v, i) => (
-              <div className="relative">
+              <div key={i} className="relative">
                 <div
                   className={`absolute left-6 top-10 w-0.5 h-full border border-gray-400 border-dashed ${i === steps.length - 1 ? "hidden" : ""} `}
                 ></div>
