@@ -7,8 +7,8 @@ export function VendorCta() {
             Grow Your Business with Venuze
           </h2>
           <p className="max-w-[713px] text-base font-medium md:text-lg lg:text-[20px] lg:leading-[30px]">
-            Showcase your services to thousands of event organizers and creators searching for
-            talent like yours.
+            Showcase your services to thousands of event organizers and creators
+            searching for talent like yours.
           </p>
         </div>
         <button className="rounded-[10px] bg-black px-9 py-[18px] text-lg text-white transition-opacity hover:opacity-90 lg:text-[20px]">

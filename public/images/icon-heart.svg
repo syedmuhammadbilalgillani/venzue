@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="28.4903" height="27.4983" viewBox="0 0 28.4903 27.4983" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Heart" filter="url(#filter0_d_0_12)">
+<path id="Stroke 1" fill-rule="evenodd" clip-rule="evenodd" d="M5.11846 9.34834C4.04546 5.99834 5.29946 2.16934 8.81646 1.03634C10.6665 0.439339 12.7085 0.791339 14.2465 1.94834C15.7015 0.823339 17.8185 0.443339 19.6665 1.03634C23.1835 2.16934 24.4455 5.99834 23.3735 9.34834C21.7035 14.6583 14.2465 18.7483 14.2465 18.7483C14.2465 18.7483 6.84446 14.7203 5.11846 9.34834Z" fill="black" fill-opacity="0.4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Stroke 3" d="M18.2466 4.45314C19.3166 4.79914 20.0726 5.75414 20.1636 6.87514" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<filter id="filter0_d_0_12" x="-2.38419e-07" y="0" width="28.4903" height="27.4983" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_12"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_12" result="shape"/>
+</filter>
+</defs>
+</svg>

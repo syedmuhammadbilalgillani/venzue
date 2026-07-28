@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useUsers } from "@/lib/hooks/use-users";
 
 function UserCardSkeleton() {
@@ -18,7 +19,12 @@ function UserCardSkeleton() {
 
 export function UserList() {
   const [page, setPage] = useState(1);
+  const queryClient = useQueryClient();
   const { data, isLoading, isError, refetch } = useUsers(page);
+
+  const handleRefresh = () => {
+    queryClient.invalidateQueries({ queryKey: ["users"] });
+  };
 
   if (isLoading) {
     return (
@@ -56,6 +62,14 @@ export function UserList() {
 
   return (
     <div className="flex flex-col gap-4">
+      <div className="flex justify-end">
+        <button
+          onClick={handleRefresh}
+          className="rounded-[10px] border border-[#e5e5e5] px-4 py-2 text-sm font-medium text-black transition-colors hover:border-[#ff5037]"
+        >
+          Refresh
+        </button>
+      </div>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         {data.data.map((user) => (
           <div
