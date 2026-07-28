@@ -6,9 +6,9 @@ test.describe("Landing page", () => {
     await expect(
       page.getByRole("heading", { name: /celebrate in venues big and small/i })
     ).toBeVisible();
-    await expect(page.getByText("Where")).toBeVisible();
-    await expect(page.getByText("When")).toBeVisible();
-    await expect(page.getByText("Guests")).toBeVisible();
+    await expect(page.getByText("Where", { exact: true })).toBeVisible();
+    await expect(page.getByText("When", { exact: true })).toBeVisible();
+    await expect(page.getByText("Guests", { exact: true })).toBeVisible();
   });
 
   test("redirects to the search page with query params on search", async ({ page }) => {

@@ -8,21 +8,17 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const isProtected = PROTECTED_PREFIXES.some((prefix) => pathname.startsWith(prefix));
-  const isLoginPage = pathname === "/login";
 
   if (isProtected && !token) {
-    const loginUrl = new URL("/login", request.url);
-    loginUrl.searchParams.set("redirect", pathname);
-    return NextResponse.redirect(loginUrl);
-  }
-
-  if (isLoginPage && token) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
+    const homeUrl = new URL("/", request.url);
+    homeUrl.searchParams.set("login", "1");
+    homeUrl.searchParams.set("redirect", pathname);
+    return NextResponse.redirect(homeUrl);
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/login"],
+  matcher: ["/dashboard/:path*"],
 };

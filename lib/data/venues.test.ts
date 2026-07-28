@@ -82,12 +82,14 @@ describe("inferCapacity", () => {
   it("returns the max guest count found in pricing details", () => {
     const entry = {
       pricing: { package_pricing: [{ guest_count: 4 }, { guest_count: 12 }] },
-    } as Parameters<typeof inferCapacity>[0];
+    } as unknown as Parameters<typeof inferCapacity>[0];
     expect(inferCapacity(entry)).toBe(12);
   });
 
   it("returns null when pricing has no guest count data", () => {
-    const entry = { pricing: { hourly_rate: 100 } } as Parameters<typeof inferCapacity>[0];
+    const entry = {
+      pricing: { hourly_rate: 100 },
+    } as unknown as Parameters<typeof inferCapacity>[0];
     expect(inferCapacity(entry)).toBeNull();
   });
 });
