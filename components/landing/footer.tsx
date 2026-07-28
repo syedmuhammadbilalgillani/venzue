@@ -78,7 +78,7 @@ export function Footer() {
       </div>
 
       <hr className="my-10 border-white/10" />
-      <div>
+      <div className="flex flex-wrap lg:justify-between gap-6 justify-center">
         <div className="flex gap-4">
           <Image
             src="/images/icon-twitter.svg"

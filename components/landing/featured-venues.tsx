@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { ChevronRight } from "lucide-react";
 import { venues } from "@/lib/data/venues";
+import { useFavoritesStore } from "@/store/favorites-store";
 import type { Venue } from "@/types/venue";
 
 const filters = ["Rooftop", "Gallery", "Restaurant", "Outdoor", "Studio", "terrace", "ballroom"];
@@ -11,9 +13,96 @@ function PriceLabel({ venue }: { venue: Venue }) {
   if (venue.pricePerHour == null) return <span>Contact for pricing</span>;
   return (
     <span>
-      From {venue.currency ?? "$"}
-      {venue.pricePerHour}/hour
+      From <span className="font-bold">{venue.currency ?? "$"}{venue.pricePerHour}/hour</span>
     </span>
+  );
+}
+
+// The real dataset doesn't carry these fields for most venues; fall back to
+// placeholder values so the card always matches the design.
+const FALLBACK_GUESTS = "300+";
+const FALLBACK_AREA = "2,000 sq ft";
+const FALLBACK_PARKING = "Free parking";
+const FALLBACK_MORE_COUNT = 25;
+
+function FeaturedCard({ venue }: { venue: Venue }) {
+  const isFavorite = useFavoritesStore((s) => s.isFavorite(venue.id));
+  const toggleFavorite = useFavoritesStore((s) => s.toggleFavorite);
+  const stats = [
+    { icon: "/images/icon-guests.svg", label: venue.guests ?? FALLBACK_GUESTS, size: 14 },
+    { icon: "/images/icon-area.svg", label: venue.areaSqFt ?? FALLBACK_AREA, size: 15 },
+    { icon: "/images/icon-parking.svg", label: venue.parking ?? FALLBACK_PARKING, size: 16 },
+  ];
+  const moreCount = venue.moreCount ?? FALLBACK_MORE_COUNT;
+
+  return (
+    <div className="w-[280px] shrink-0 snap-start overflow-hidden rounded-[20px] bg-white md:w-[300px] lg:w-full">
+      <div className="relative h-[250px] w-full bg-[#e4e4e4]">
+        <Image
+          src={venue.image}
+          alt={venue.title}
+          fill
+          className="object-cover"
+          sizes="(min-width: 1024px) 25vw, 280px"
+        />
+        {venue.verified && (
+          <span className="absolute left-2.5 top-2.5 rounded-full bg-black/50 px-3.5 py-1.5 text-[11px] font-semibold tracking-[-0.33px] text-white backdrop-blur-sm">
+            Verified
+          </span>
+        )}
+        <button
+          aria-label="Share"
+          className="absolute right-[57px] top-2.5 flex size-[30px] items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition-colors hover:bg-black/70"
+        >
+          <svg width="15" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 16.08a2.92 2.92 0 00-1.94.75l-7.05-4.11a2.9 2.9 0 000-1.44l7.05-4.11c.52.48 1.21.75 1.94.75a3 3 0 10-3-3c0 .24.03.48.08.72L8.03 9.85a3 3 0 100 4.3l7.05 4.11c-.05.23-.08.47-.08.71a3 3 0 103-2.99z" />
+          </svg>
+        </button>
+        <button
+          onClick={() => toggleFavorite(venue.id)}
+          aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+          aria-pressed={isFavorite}
+          className="absolute right-2.5 top-2.5 flex size-[30px] items-center justify-center rounded-full bg-black/50 backdrop-blur-sm transition-colors hover:bg-black/70"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill={isFavorite ? "#ff5037" : "none"} stroke="white" strokeWidth="2">
+            <path d="M12 21s-7.5-4.6-10-9.2C.5 8.4 2 4.8 5.6 4c2-.4 4 .5 6.4 3 2.4-2.5 4.4-3.4 6.4-3 3.6.8 5.1 4.4 3.6 7.8C19.5 16.4 12 21 12 21z" />
+          </svg>
+        </button>
+      </div>
+
+      <div className="flex flex-col gap-3.5 rounded-b-[20px] border border-[#e5e5e5] p-3.5 shadow-[0px_2px_1.5px_0px_rgba(0,0,0,0.05)]">
+        <h3 className="line-clamp-2 text-base font-semibold text-black">{venue.title}</h3>
+        <p className="-mt-2 line-clamp-1 text-sm text-[#ff5037]">{venue.location}</p>
+
+        <div className="flex flex-wrap gap-1.5">
+          {stats.map((s) => (
+            <span
+              key={s.label}
+              className="flex items-center gap-1.5 rounded-full bg-[#f9fafb] px-2 py-1.5 text-[10px] font-medium text-[#364153]"
+            >
+              <Image src={s.icon} alt="" width={s.size} height={s.size} />
+              {s.label}
+            </span>
+          ))}
+        </div>
+
+        <span className="w-fit rounded-full bg-[#f9fafb] px-2 py-1.5 text-[10px] font-medium text-[#364153]">
+          +{moreCount} more
+        </span>
+
+        <hr className="border-[#e5e5e5]" />
+
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-sm text-black">
+            <PriceLabel venue={venue} />
+          </p>
+          <button className="flex shrink-0 items-center gap-1 rounded-[10px] border border-[#ff5037] px-3.5 py-1.5 text-xs font-medium text-[#ff5037] transition-colors hover:bg-[#ff5037] hover:text-white">
+            View details
+            <ChevronRight size={14} />
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -53,67 +142,9 @@ export function FeaturedVenues() {
           </div>
         ) : (
           <div className="scrollbar-none flex snap-x gap-6 overflow-x-auto pb-2 lg:grid lg:grid-cols-4 lg:overflow-visible">
-            {filtered.map((v) => {
-              const stats = [v.guests, v.areaSqFt, v.parking].filter(Boolean);
-              return (
-                <div
-                  key={v.id}
-                  className="w-[280px] shrink-0 snap-start overflow-hidden rounded-[20px] md:w-[300px] lg:w-full"
-                >
-                  <div className="relative h-[250px] w-full bg-[#e4e4e4]">
-                    <Image
-                      src={v.image}
-                      alt={v.title}
-                      fill
-                      className="object-cover"
-                      sizes="(min-width: 1024px) 25vw, 280px"
-                    />
-                    {v.verified && (
-                      <span className="absolute left-2.5 top-2.5 rounded-full bg-white px-3 py-1 text-xs font-medium text-black">
-                        Verified
-                      </span>
-                    )}
-                    <button
-                      aria-label="Save"
-                      className="absolute right-2.5 top-2.5 flex size-[30px] items-center justify-center rounded-full bg-white/90"
-                    >
-                      ♡
-                    </button>
-                  </div>
-                  <div className="rounded-b-[20px] border border-[#e5e5e5] bg-white p-4 shadow-[0px_3px_1.5px_0px_rgba(0,0,0,0.05)]">
-                    <h3 className="mb-2 line-clamp-2 text-sm font-medium text-black">{v.title}</h3>
-                    <p className="mb-3 line-clamp-1 text-xs text-[#ff5037]">{v.location}</p>
-                    {stats.length > 0 && (
-                      <div className="mb-3 flex flex-wrap gap-1.5">
-                        {stats.map((s) => (
-                          <span
-                            key={s}
-                            className="rounded-full bg-[#f9fafb] px-2 py-1 text-[10px] font-medium text-[#364153]"
-                          >
-                            {s}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                    <div className="flex items-center justify-between">
-                      {typeof v.moreCount === "number" ? (
-                        <span className="rounded-full bg-[#f9fafb] px-2 py-1 text-[10px] font-medium text-[#364153]">
-                          +{v.moreCount} more
-                        </span>
-                      ) : (
-                        <span />
-                      )}
-                      <button className="rounded-[10px] border border-[#ff5037] px-3 py-1.5 text-[11px] font-medium text-[#ff5037]">
-                        View details
-                      </button>
-                    </div>
-                    <p className="mt-2 text-sm font-medium text-[#ff5037]">
-                      <PriceLabel venue={v} />
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
+            {filtered.map((v) => (
+              <FeaturedCard key={v.id} venue={v} />
+            ))}
           </div>
         )}
       </div>

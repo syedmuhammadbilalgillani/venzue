@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 export function VendorCta() {
   return (
     <section className="px-5 pb-10 md:px-8 lg:px-20 lg:-mt-28 ">
-      <div className="mx-auto flex max-w-7xl  justify-center lg:gap-6 gap-10 rounded-[20px] bg-linear-to-r from-[#ff786a] via-[#ff5037] to-[#ffc331] p-8 ">
+      <div className="mx-auto flex max-w-7xl lg:flex-nowrap flex-wrap  justify-center lg:gap-6 gap-10 rounded-[20px] bg-linear-to-r from-[#ff786a] via-[#ff5037] to-[#ffc331] p-8 ">
         <div className="space-y-3 flex flex-col lg:items-start items-center">
           <div className="relative z-10 flex flex-col gap-2.5 text-white lg:text-start text-center">
             <h2 className="max-w-140 text-[28px] font-semibold leading-tight md:text-[36px] lg:text-[44px] lg:leading-[50px]">
