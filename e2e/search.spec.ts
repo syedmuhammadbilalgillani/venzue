@@ -8,7 +8,7 @@ test.describe("Search page", () => {
 
   test("opens the filters sheet and toggles a venue style chip", async ({ page }) => {
     await page.goto("/search?where=Dubai, UAE");
-    await page.getByRole("button", { name: "Filters", exact: true }).click();
+    await page.getByRole("button", { name: /^Filters/ }).click();
     await expect(page.getByRole("heading", { name: /^filters$/i })).toBeVisible();
 
     const restaurantChip = page.getByRole("button", { name: "Restaurant", exact: true });
@@ -20,12 +20,12 @@ test.describe("Search page", () => {
     page,
   }) => {
     await page.goto("/search?where=Dubai, UAE");
-    await page.getByRole("button", { name: "Filters", exact: true }).click();
+    await page.getByRole("button", { name: /^Filters/ }).click();
     await page.getByRole("button", { name: "Meeting", exact: true }).click();
     await page.getByRole("button", { name: /apply filters/i }).click();
     await expect(page).toHaveURL(/style=Meeting/);
 
-    await page.getByRole("button", { name: "Filters", exact: true }).click();
+    await page.getByRole("button", { name: /^Filters/ }).click();
     await page.getByRole("button", { name: /clear all/i }).click();
     await expect(page).not.toHaveURL(/style=/);
   });
