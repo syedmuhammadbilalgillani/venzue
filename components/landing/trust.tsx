@@ -4,25 +4,25 @@ const stats = [
   {
     value: "1,500+",
     label: "Venues Vetted & Approved",
-    bg: "#ff786a",
+    bg: "var(--gradient-from)",
     text: "text-white",
   },
   {
     value: "7,500+",
     label: "Events Successfully Hosted",
-    bg: "#ff5037",
+    bg: "var(--primary)",
     text: "text-white",
   },
   {
     value: "35+",
     label: "Cities Across the Region",
-    bg: "#fe8b16",
+    bg: "var(--stat-orange)",
     text: "text-white",
   },
   {
     value: "4.9★",
     label: "Average Host Rating",
-    bg: "#ffc332",
+    bg: "var(--gradient-to-alt)",
     text: "text-black",
   },
 ];

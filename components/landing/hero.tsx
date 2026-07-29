@@ -35,7 +35,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#372321]">
+    <section className="relative w-full overflow-hidden bg-hero-dark">
       <div className="relative mx-auto h-dvh">
         <Image
           src="/images/hero-bg.jpg"
@@ -56,7 +56,7 @@ export function Hero() {
               <button
                 onClick={() => setTab("venue")}
                 className={`flex h-10 flex-1 items-center justify-center gap-1.5 rounded-[10px] text-sm font-semibold transition-colors ${
-                  tab === "venue" ? "bg-[#ff5037] text-white" : "text-black"
+                  tab === "venue" ? "bg-primary text-white" : "text-black"
                 }`}
               >
                 <IconVenue active={tab === "venue"} />
@@ -65,7 +65,7 @@ export function Hero() {
               <button
                 onClick={() => setTab("vendors")}
                 className={`flex h-10 flex-1 items-center justify-center gap-[5px] rounded-[10px] text-sm font-semibold transition-colors ${
-                  tab === "vendors" ? "bg-[#ff5037] text-white" : "text-black"
+                  tab === "vendors" ? "bg-primary text-white" : "text-black"
                 }`}
               >
                 <IconVendor active={tab === "vendors"} />
@@ -78,14 +78,14 @@ export function Hero() {
                 value={where}
                 onValueChange={setWhere}
                 options={WHERE_OPTIONS}
-                className="md:flex-1 md:border-r md:border-[#e5e5e5] md:pr-6"
+                className="md:flex-1 md:border-r md:border-border md:pr-6"
               />
               <HeroSearchField
                 label="When"
                 value={when}
                 onValueChange={setWhen}
                 options={WHEN_OPTIONS}
-                className="md:flex-1 md:border-r md:border-[#e5e5e5] md:px-6"
+                className="md:flex-1 md:border-r md:border-border md:px-6"
               />
               <HeroSearchField
                 label="Guests"
@@ -96,7 +96,7 @@ export function Hero() {
               />
               <button
                 onClick={handleSearch}
-                className="flex h-[60px] items-center justify-center gap-2 rounded-[10px] bg-[#ff5037] px-8 text-white transition-opacity hover:opacity-90 md:ml-4"
+                className="flex h-[60px] items-center justify-center gap-2 rounded-[10px] bg-primary px-8 text-white transition-opacity hover:opacity-90 md:ml-4"
               >
                 <Image
                   src="/images/icon-search-btn.svg"

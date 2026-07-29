@@ -11,7 +11,7 @@ const vendors = [
 
 export function Vendors() {
   return (
-    <section className="bg-[#fdf1d2] px-5 py-16 md:px-8 lg:px-[121px] lg:pt-18  lg:pb-38">
+    <section className="bg-accent px-5 py-16 md:px-8 lg:px-[121px] lg:pt-18  lg:pb-38">
       <div className="mx-auto mb-10 max-w-[1200px] text-center lg:mb-[70px]">
         <h2 className="text-[28px] font-semibold leading-tight text-black md:text-[36px] lg:text-[44px] lg:leading-[50px]">
           Complete Your Event with our Trusted Vendors
@@ -46,7 +46,7 @@ export function Vendors() {
       <div className="mt-6 hidden items-center justify-end gap-2.5 lg:flex">
         <button
           aria-label="Previous"
-          className="flex size-[42px] items-center justify-center rounded-full bg-[#f4f4f4] shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)] transition-opacity hover:opacity-80"
+          className="flex size-[42px] items-center justify-center rounded-full bg-surface-subtle shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)] transition-opacity hover:opacity-80"
         >
           <Image
             src="/images/icon-chevron-left.svg"
@@ -57,7 +57,7 @@ export function Vendors() {
         </button>
         <button
           aria-label="Next"
-          className="flex size-[42px] items-center justify-center rounded-full bg-[#f4f4f4] shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)] transition-opacity hover:opacity-80"
+          className="flex size-[42px] items-center justify-center rounded-full bg-surface-subtle shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)] transition-opacity hover:opacity-80"
         >
           <Image
             src="/images/icon-chevron-right.svg"

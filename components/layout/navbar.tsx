@@ -41,7 +41,7 @@ export function Navbar({
       className={`flex h-18 items-center justify-between px-5 md:h-[88px] md:px-8 ${
         isTransparent
           ? "absolute inset-x-0 top-0 z-10 lg:px-10"
-          : "border-b border-[#e9e9e9] shadow-[0px_4px_10px_0px_rgba(0,0,0,0.1)]"
+          : "border-b border-divider shadow-[0px_4px_10px_0px_rgba(0,0,0,0.1)]"
       } ${className}`}
     >
       <Link href="/" className="flex items-center gap-2">
@@ -62,17 +62,17 @@ export function Navbar({
       </Link>
 
       {showSearchPill && (
-        <div className="hidden items-center gap-7 rounded-[10px] bg-[#f7f7f7] px-6 py-3 lg:flex">
+        <div className="hidden items-center gap-7 rounded-[10px] bg-surface-subtle-2 px-6 py-3 lg:flex">
           <span className="text-sm font-medium text-black">{where}</span>
-          <span className="h-4 w-px bg-[#d9d9d9]" />
+          <span className="h-4 w-px bg-neutral-300" />
           <span className="text-sm font-medium text-black">{when}</span>
-          <span className="h-4 w-px bg-[#d9d9d9]" />
+          <span className="h-4 w-px bg-neutral-300" />
           <span className="text-sm font-medium text-black">
             {guests} Guests
           </span>
           <button
             aria-label="Search"
-            className="flex size-9 items-center justify-center rounded-[10px] bg-[#ff5037] transition-opacity hover:opacity-90"
+            className="flex size-9 items-center justify-center rounded-[10px] bg-primary transition-opacity hover:opacity-90"
           >
             <Image
               src="/images/search-topbar-search.svg"
@@ -85,13 +85,13 @@ export function Navbar({
       )}
 
       <div className="flex items-center gap-2 md:gap-2.75">
-        <button className="hidden items-center gap-1.5 rounded-[10px] border border-[#ffd6cf] bg-white px-4 py-2.5 text-sm font-semibold text-[#ff5037] transition-colors hover:bg-[#fff5f3] md:flex">
+        <button className="hidden items-center gap-1.5 rounded-[10px] border border-primary-border bg-white px-4 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary-tint md:flex">
           Add your listing
           <span aria-hidden className="text-xs">
             <ChevronDown color="gray" size={18} />
           </span>
         </button>
-        <button className="flex items-center gap-1.5 rounded-[10px] border border-[#ffd6cf] bg-white px-3 py-2.5 text-sm font-semibold text-[#ff5037] transition-colors hover:bg-[#fff5f3]">
+        <button className="flex items-center gap-1.5 rounded-[10px] border border-primary-border bg-white px-3 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary-tint">
           EN
           <span aria-hidden className="text-xs">
             <ChevronDown color="gray" size={18} />
@@ -102,14 +102,14 @@ export function Navbar({
           <>
             <Link
               href="/dashboard"
-              className="flex items-center gap-1.5 rounded-[10px] border border-[#ffd6cf] bg-white px-3 py-2.5 text-sm font-semibold text-[#ff5037] transition-colors hover:bg-[#fff5f3] md:px-4"
+              className="flex items-center gap-1.5 rounded-[10px] border border-primary-border bg-white px-3 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary-tint md:px-4"
             >
               <LayoutDashboard size={16} />
               <span className="hidden md:inline">Dashboard</span>
             </Link>
             <div
               title={email ?? undefined}
-              className="hidden size-10 items-center justify-center rounded-full border border-[#ffd6cf] bg-[#ff5037] text-sm font-semibold text-white sm:flex"
+              className="hidden size-10 items-center justify-center rounded-full border border-primary-border bg-primary text-sm font-semibold text-white sm:flex"
             >
               {email?.[0]?.toUpperCase() ?? "U"}
             </div>
@@ -117,7 +117,7 @@ export function Navbar({
               onClick={handleLogout}
               aria-label="Log out"
               title="Log out"
-              className="flex size-10 items-center justify-center rounded-full border border-[#ffd6cf] bg-white text-[#ff5037] transition-colors hover:bg-[#fff5f3]"
+              className="flex size-10 items-center justify-center rounded-full border border-primary-border bg-white text-primary transition-colors hover:bg-primary-tint"
             >
               <LogOut size={18} />
             </button>
@@ -125,7 +125,7 @@ export function Navbar({
         ) : (
           <LoginDialog
             trigger={
-              <span className="flex size-10 items-center justify-center rounded-full border border-[#ffd6cf] bg-white text-[#ff5037] transition-colors hover:bg-[#fff5f3]">
+              <span className="flex size-10 items-center justify-center rounded-full border border-primary-border bg-white text-primary transition-colors hover:bg-primary-tint">
                 <svg
                   width="18"
                   height="18"
