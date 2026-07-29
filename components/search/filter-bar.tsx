@@ -45,16 +45,16 @@ export function FilterBar() {
           <button
             key={chip}
             onClick={() => removeChip(chip)}
-            className="flex shrink-0 items-center gap-1.5 rounded-full border-[1.5px] border-[#e6e6e6] bg-white px-4 py-2 text-[11px] font-medium tracking-[-0.33px] text-[#3a3a3a] transition-colors hover:border-[#ff5037] hover:text-[#ff5037]"
+            className="flex shrink-0 items-center gap-1.5 rounded-full border-[1.5px] border-chip-border bg-white px-4 py-2 text-[11px] font-medium tracking-[-0.33px] text-chip-text transition-colors hover:border-primary hover:text-primary"
           >
             {chip}
-            <X className="text-[#555] " size={12} />
+            <X className="text-chip-close " size={12} />
           </button>
         ))}
         {chips.length > 0 && (
           <button
             onClick={() => setChips([])}
-            className="shrink-0 rounded-full border-[1.5px] border-[#e6e6e6] bg-white px-4 py-2 text-[11px] font-medium tracking-[-0.33px] text-[#3a3a3a] transition-colors hover:border-[#ff5037] hover:text-[#ff5037]"
+            className="shrink-0 rounded-full border-[1.5px] border-chip-border bg-white px-4 py-2 text-[11px] font-medium tracking-[-0.33px] text-chip-text transition-colors hover:border-primary hover:text-primary"
           >
             Clear filters
           </button>
@@ -62,7 +62,7 @@ export function FilterBar() {
       </div>
 
       <Select value={sort} onValueChange={handleSortChange}>
-        <SelectTrigger className="h-auto w-fit gap-1.5 rounded-full border-[1.5px] border-[#e6e6e6] bg-white px-4 py-2 text-[11px] text-[#333] outline-none transition-colors hover:border-[#ff5037] focus-visible:ring-0 [&>svg]:hidden">
+        <SelectTrigger className="h-auto w-fit gap-1.5 rounded-full border-[1.5px] border-chip-border bg-white px-4 py-2 text-[11px] text-sort-text outline-none transition-colors hover:border-primary focus-visible:ring-0 [&>svg]:hidden">
           <span className="flex gap-2">
             <span className="lg:block hidden">Sort by: </span>
             <SelectValue className="inline" />

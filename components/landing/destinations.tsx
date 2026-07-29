@@ -44,7 +44,7 @@ export function Destinations() {
         {destinations.map((d) => (
           <div
             key={d.city}
-            className="relative h-[420px] overflow-hidden rounded-[20px] bg-[#d9d9d9] lg:h-[500px]"
+            className="relative h-[420px] overflow-hidden rounded-[20px] bg-neutral-300 lg:h-[500px]"
           >
             <Image src={d.image} alt={d.city} fill className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-b from-black/0 from-30% to-black" />

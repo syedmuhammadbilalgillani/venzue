@@ -11,7 +11,7 @@ function MarkerBadge({ active }: { active: boolean }) {
   return (
     <div
       className={`flex size-10 -translate-x-1/2 -translate-y-full items-center justify-center rounded-full border-2 border-white shadow-lg transition-transform hover:scale-110 ${
-        active ? "z-10 bg-[#ff5037]" : "bg-white"
+        active ? "z-10 bg-primary" : "bg-white"
       }`}
     >
       <Image
@@ -37,7 +37,7 @@ export function GoogleMapView({ venues }: { venues: Venue[] }) {
 
   if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) {
     return (
-      <div className="flex size-full items-center justify-center bg-[#e5e5e5] p-6 text-center text-sm text-[#808080]">
+      <div className="flex size-full items-center justify-center bg-border p-6 text-center text-sm text-muted-foreground">
         Add NEXT_PUBLIC_GOOGLE_MAPS_API_KEY to .env.local to enable the map.
       </div>
     );
@@ -45,7 +45,7 @@ export function GoogleMapView({ venues }: { venues: Venue[] }) {
 
   if (!isLoaded) {
     return (
-      <div className="flex size-full items-center justify-center bg-[#e5e5e5] text-sm text-[#808080]">
+      <div className="flex size-full items-center justify-center bg-border text-sm text-muted-foreground">
         Loading map...
       </div>
     );
@@ -100,7 +100,7 @@ export function GoogleMapView({ venues }: { venues: Venue[] }) {
               <p className="line-clamp-1 text-sm font-semibold text-black">
                 {selected.title}
               </p>
-              <div className="flex items-center gap-1 text-xs text-[#ff5037]">
+              <div className="flex items-center gap-1 text-xs text-primary">
                 <Image
                   src="/images/icon-location.svg"
                   alt=""

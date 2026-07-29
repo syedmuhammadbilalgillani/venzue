@@ -38,7 +38,7 @@ function FeaturedCard({ venue }: { venue: Venue }) {
 
   return (
     <div className="w-[280px] shrink-0 snap-start overflow-hidden rounded-[20px] bg-white md:w-[300px] lg:w-full">
-      <div className="relative h-[250px] w-full bg-[#e4e4e4]">
+      <div className="relative h-[250px] w-full bg-image-placeholder">
         <Image
           src={venue.image}
           alt={venue.title}
@@ -65,21 +65,21 @@ function FeaturedCard({ venue }: { venue: Venue }) {
           aria-pressed={isFavorite}
           className="absolute right-2.5 top-2.5 flex size-[30px] items-center justify-center rounded-full bg-black/50 backdrop-blur-sm transition-colors hover:bg-black/70"
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill={isFavorite ? "#ff5037" : "none"} stroke="white" strokeWidth="2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill={isFavorite ? "var(--primary)" : "none"} stroke="white" strokeWidth="2">
             <path d="M12 21s-7.5-4.6-10-9.2C.5 8.4 2 4.8 5.6 4c2-.4 4 .5 6.4 3 2.4-2.5 4.4-3.4 6.4-3 3.6.8 5.1 4.4 3.6 7.8C19.5 16.4 12 21 12 21z" />
           </svg>
         </button>
       </div>
 
-      <div className="flex flex-col gap-3.5 rounded-b-[20px] border border-[#e5e5e5] p-3.5 shadow-[0px_2px_1.5px_0px_rgba(0,0,0,0.05)]">
+      <div className="flex flex-col gap-3.5 rounded-b-[20px] border border-border p-3.5 shadow-[0px_2px_1.5px_0px_rgba(0,0,0,0.05)]">
         <h3 className="line-clamp-2 text-base font-semibold text-black">{venue.title}</h3>
-        <p className="-mt-2 line-clamp-1 text-sm text-[#ff5037]">{venue.location}</p>
+        <p className="-mt-2 line-clamp-1 text-sm text-primary">{venue.location}</p>
 
         <div className="flex flex-wrap gap-1.5">
           {stats.map((s) => (
             <span
               key={s.label}
-              className="flex items-center gap-1.5 rounded-full bg-[#f9fafb] px-2 py-1.5 text-[10px] font-medium text-[#364153]"
+              className="flex items-center gap-1.5 rounded-full bg-muted px-2 py-1.5 text-[10px] font-medium text-stat-text"
             >
               <Image src={s.icon} alt="" width={s.size} height={s.size} />
               {s.label}
@@ -87,17 +87,17 @@ function FeaturedCard({ venue }: { venue: Venue }) {
           ))}
         </div>
 
-        <span className="w-fit rounded-full bg-[#f9fafb] px-2 py-1.5 text-[10px] font-medium text-[#364153]">
+        <span className="w-fit rounded-full bg-muted px-2 py-1.5 text-[10px] font-medium text-stat-text">
           +{moreCount} more
         </span>
 
-        <hr className="border-[#e5e5e5]" />
+        <hr className="border-border" />
 
         <div className="flex items-center justify-between gap-2">
           <p className="text-sm text-black">
             <PriceLabel venue={venue} />
           </p>
-          <button className="flex shrink-0 items-center gap-1 rounded-[10px] border border-[#ff5037] px-3.5 py-1.5 text-xs font-medium text-[#ff5037] transition-colors hover:bg-[#ff5037] hover:text-white">
+          <button className="flex shrink-0 items-center gap-1 rounded-[10px] border border-primary px-3.5 py-1.5 text-xs font-medium text-primary transition-colors hover:bg-primary hover:text-white">
             View details
             <ChevronRight size={14} />
           </button>
@@ -127,7 +127,7 @@ export function FeaturedVenues() {
                 key={f}
                 onClick={() => setActive(f)}
                 className={`shrink-0 rounded-[10px] px-6 py-3 text-base font-medium capitalize transition-colors ${
-                  active === f ? "bg-[#ff5037] text-white" : "text-white/70 hover:text-white"
+                  active === f ? "bg-primary text-white" : "text-white/70 hover:text-white"
                 }`}
               >
                 {f}

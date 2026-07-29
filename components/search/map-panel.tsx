@@ -10,7 +10,7 @@ const GoogleMapView = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="flex size-full items-center justify-center bg-[#e5e5e5] text-sm text-[#808080]">
+      <div className="flex size-full items-center justify-center bg-border text-sm text-muted-foreground">
         Loading map...
       </div>
     ),
@@ -30,7 +30,7 @@ export function MapPanel({
 }) {
   return (
     <div
-      className={`relative size-full overflow-hidden bg-[#e5e5e5] ${
+      className={`relative size-full overflow-hidden bg-border ${
         forceVisible ? "block" : "hidden lg:block"
       }`}
     >
@@ -39,7 +39,7 @@ export function MapPanel({
       {onToggleExpand && (
         <button
           onClick={onToggleExpand}
-          className="absolute top-4 right-4 z-[10000] hidden h-10 w-10 items-center justify-center rounded-lg border border-[#ffd6cf] bg-white/95 text-[#ff5037] shadow-lg backdrop-blur-sm transition-all hover:scale-105 hover:bg-white active:scale-95 lg:flex"
+          className="absolute top-4 right-4 z-[10000] hidden h-10 w-10 items-center justify-center rounded-lg border border-primary-border bg-white/95 text-primary shadow-lg backdrop-blur-sm transition-all hover:scale-105 hover:bg-white active:scale-95 lg:flex"
           title={isExpanded ? "Show List View" : "View Full Map"}
         >
           {isExpanded ? <Minimize2 size={20} /> : <Maximize2 size={20} />}

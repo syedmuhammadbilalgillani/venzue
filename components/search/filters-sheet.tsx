@@ -139,20 +139,20 @@ export function FiltersSheet() {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger
         render={
-          <div className="relative cursor-pointer flex shrink-0 items-center gap-1.5 rounded-[10px] py-2.5 lg:px-5 px-0 text-base text-black transition-colors hover:bg-[#f4f4f4]" />
+          <div className="relative cursor-pointer flex shrink-0 items-center gap-1.5 rounded-[10px] py-2.5 lg:px-5 px-0 text-base text-black transition-colors hover:bg-surface-subtle" />
         }
       >
         <Image src="/images/icon-filter.png" alt="" width={16} height={16} />
         Filters
         {activeCount > 0 && (
-          <span className="flex size-5 items-center justify-center rounded-full bg-[#ff5037] text-[11px] font-semibold text-white">
+          <span className="flex size-5 items-center justify-center rounded-full bg-primary text-[11px] font-semibold text-white">
             {activeCount}
           </span>
         )}
       </SheetTrigger>
 
       <SheetContent side="right" className="w-full gap-0 p-0 sm:max-w-[420px]">
-        <SheetHeader className="flex-row items-center justify-between border-b border-[#e5e5e5] p-5">
+        <SheetHeader className="flex-row items-center justify-between border-b border-border p-5">
           <SheetTitle className="text-xl font-semibold text-black">
             Filters
           </SheetTitle>
@@ -170,8 +170,8 @@ export function FiltersSheet() {
                   onClick={() => setStyle((s) => toggle(s, v))}
                   className={`rounded-full px-3.5 py-2 text-sm transition-colors ${
                     style.includes(v)
-                      ? "bg-[#ff5037] text-white"
-                      : "bg-[#f4f4f4] text-black hover:bg-[#e9e9e9]"
+                      ? "bg-primary text-white"
+                      : "bg-surface-subtle text-black hover:bg-divider"
                   }`}
                 >
                   {v}
@@ -180,11 +180,11 @@ export function FiltersSheet() {
             </div>
           </section>
 
-          <hr className="my-6 border-[#e5e5e5]" />
+          <hr className="my-6 border-border" />
 
           <section>
             <h3 className="mb-1 text-sm font-semibold text-black">Capacity</h3>
-            <p className="mb-4 text-sm text-[#808080]">
+            <p className="mb-4 text-sm text-muted-foreground">
               Showing venues for {capacity[0]} - {capacity[1]} guests
             </p>
             <Slider
@@ -196,14 +196,14 @@ export function FiltersSheet() {
             />
           </section>
 
-          <hr className="my-6 border-[#e5e5e5]" />
+          <hr className="my-6 border-border" />
 
           <section>
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-sm font-semibold text-black">
                 Price per hour (AED)
               </h3>
-              <div className="flex gap-6 text-xs text-[#808080]">
+              <div className="flex gap-6 text-xs text-muted-foreground">
                 <span>AED {price[0].toFixed(2)}</span>
                 <span>AED {price[1].toFixed(2)}</span>
               </div>
@@ -217,7 +217,7 @@ export function FiltersSheet() {
             />
           </section>
 
-          <hr className="my-6 border-[#e5e5e5]" />
+          <hr className="my-6 border-border" />
 
           <section>
             <h3 className="mb-3 text-sm font-semibold text-black">
@@ -230,8 +230,8 @@ export function FiltersSheet() {
                   onClick={() => setOccasion((s) => toggle(s, o))}
                   className={`rounded-full px-3.5 py-2 text-sm transition-colors ${
                     occasion.includes(o)
-                      ? "bg-[#ff5037] text-white"
-                      : "bg-[#f4f4f4] text-black hover:bg-[#e9e9e9]"
+                      ? "bg-primary text-white"
+                      : "bg-surface-subtle text-black hover:bg-divider"
                   }`}
                 >
                   {o}
@@ -240,14 +240,14 @@ export function FiltersSheet() {
             </div>
           </section>
 
-          <hr className="my-6 border-[#e5e5e5]" />
+          <hr className="my-6 border-border" />
 
           <section className="flex items-center justify-between">
             <div>
               <h3 className="text-sm font-semibold text-black">
                 Verified Only
               </h3>
-              <p className="text-sm text-[#808080]">
+              <p className="text-sm text-muted-foreground">
                 Show only verified venues
               </p>
             </div>
@@ -255,17 +255,17 @@ export function FiltersSheet() {
           </section>
         </div>
 
-        <SheetFooter className="flex-row justify-between border-t border-[#e5e5e5] p-4">
+        <SheetFooter className="flex-row justify-between border-t border-border p-4">
           <Button
             variant="outline"
             onClick={clearAll}
-            className="h-11 rounded-[10px] border-[#e5e5e5] px-6 text-sm font-medium text-black"
+            className="h-11 rounded-[10px] border-border px-6 text-sm font-medium text-black"
           >
             Clear All
           </Button>
           <Button
             onClick={applyFilters}
-            className="h-11 rounded-[10px] bg-[#ff5037] px-6 text-sm font-semibold text-white hover:bg-[#ff5037]/90"
+            className="h-11 rounded-[10px] bg-primary px-6 text-sm font-semibold text-white hover:bg-primary/90"
           >
             Apply Filters
           </Button>

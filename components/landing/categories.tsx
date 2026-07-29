@@ -65,7 +65,7 @@ export function Categories() {
       <div className="mt-6 hidden items-center justify-end gap-2.5 lg:flex">
         <button
           aria-label="Previous"
-          className="flex size-[42px] items-center justify-center rounded-full bg-[#f4f4f4] shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)] transition-opacity hover:opacity-80"
+          className="flex size-[42px] items-center justify-center rounded-full bg-surface-subtle shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)] transition-opacity hover:opacity-80"
         >
           <Image
             src="/images/icon-chevron-left.svg"
@@ -76,7 +76,7 @@ export function Categories() {
         </button>
         <button
           aria-label="Next"
-          className="flex size-[42px] items-center justify-center rounded-full bg-[#f4f4f4] shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)] transition-opacity hover:opacity-80"
+          className="flex size-[42px] items-center justify-center rounded-full bg-surface-subtle shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)] transition-opacity hover:opacity-80"
         >
           <Image
             src="/images/icon-chevron-right.svg"

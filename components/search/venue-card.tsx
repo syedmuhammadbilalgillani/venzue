@@ -51,7 +51,7 @@ export function VenueCard({ venue }: { venue: Venue }) {
 
   return (
     <div className="flex w-full flex-col overflow-hidden rounded-[20px] min-h-full">
-      <div className="group relative h-[250px] w-full overflow-hidden rounded-t-[20px] bg-[#e4e4e4]">
+      <div className="group relative h-[250px] w-full overflow-hidden rounded-t-[20px] bg-image-placeholder">
         <Image
           src={venue.image}
           alt={venue.title}
@@ -84,7 +84,7 @@ export function VenueCard({ venue }: { venue: Venue }) {
             width="20"
             height="20"
             viewBox="0 0 24 24"
-            fill={isFavorite ? "#ff5037" : "none"}
+            fill={isFavorite ? "var(--primary)" : "none"}
             stroke="white"
             strokeWidth="2"
           >
@@ -106,11 +106,11 @@ export function VenueCard({ venue }: { venue: Venue }) {
         </button>
       </div>
 
-      <div className="flex flex-col gap-3.5 rounded-b-[20px] border border-[#e5e5e5] bg-white p-3.5 shadow-[0px_2px_1.5px_0px_rgba(0,0,0,0.05)]">
+      <div className="flex flex-col gap-3.5 rounded-b-[20px] border border-border bg-white p-3.5 shadow-[0px_2px_1.5px_0px_rgba(0,0,0,0.05)]">
         <h3 className="line-clamp-2 text-base font-semibold text-black">
           {venue.title}
         </h3>
-        <p className="-mt-2 line-clamp-1 text-xs text-[#808080]">
+        <p className="-mt-2 line-clamp-1 text-xs text-muted-foreground">
           {venue.location}
         </p>
 
@@ -119,7 +119,7 @@ export function VenueCard({ venue }: { venue: Venue }) {
             {stats.map((s) => (
               <span
                 key={s.label}
-                className="flex items-center gap-1.5 rounded-full bg-[#f9fafb] px-1.5 py-1 text-[10px] font-medium text-[#364153]"
+                className="flex items-center gap-1.5 rounded-full bg-muted px-1.5 py-1 text-[10px] font-medium text-stat-text"
               >
                 <Image src={s.icon} alt="" width={s.size} height={s.size} />
                 {s.label}
@@ -129,7 +129,7 @@ export function VenueCard({ venue }: { venue: Venue }) {
         )}
 
         {typeof venue.moreCount === "number" && (
-          <span className="w-fit rounded-full bg-[#f9fafb] px-1.5 py-1 text-[10px] font-medium text-[#364153]">
+          <span className="w-fit rounded-full bg-muted px-1.5 py-1 text-[10px] font-medium text-stat-text">
             +{venue.moreCount} more
           </span>
         )}
@@ -141,7 +141,7 @@ export function VenueCard({ venue }: { venue: Venue }) {
           <Dialog>
             <DialogTrigger
               render={
-                <button className="shrink-0 rounded-[10px] border border-[#ff5037] px-3.5 py-1.5 text-xs font-medium text-[#ff5037] transition-colors hover:bg-[#ff5037] hover:text-white" />
+                <button className="shrink-0 rounded-[10px] border border-primary px-3.5 py-1.5 text-xs font-medium text-primary transition-colors hover:bg-primary hover:text-white" />
               }
             >
               View details
@@ -167,7 +167,7 @@ export function VenueCard({ venue }: { venue: Venue }) {
                   {stats.map((s) => (
                     <span
                       key={s.label}
-                      className="rounded-full bg-[#f9fafb] px-2 py-1 text-xs font-medium text-[#364153]"
+                      className="rounded-full bg-muted px-2 py-1 text-xs font-medium text-stat-text"
                     >
                       {s.label}
                     </span>

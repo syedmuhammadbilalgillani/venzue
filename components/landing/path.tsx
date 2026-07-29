@@ -78,7 +78,7 @@ export function Path() {
                 ></div>
                 <div className="flex gap-6 group">
                   <div className="relative">
-                    <div className="bg-gradient-to-r from-[#ff786a] via-[#ff4f37] to-[#ffc331] w-12 h-12 rounded-full  flex items-center justify-center text-white font-bold text-xl shadow-lg transition-transform duration-300">
+                    <div className="bg-gradient-to-r from-gradient-from via-gradient-via to-gradient-to w-12 h-12 rounded-full  flex items-center justify-center text-white font-bold text-xl shadow-lg transition-transform duration-300">
                       {v.n}
                     </div>
                   </div>

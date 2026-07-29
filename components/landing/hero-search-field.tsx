@@ -35,7 +35,7 @@ export function HeroSearchField({
         className={`h-auto w-full lg:min-w-44 items-start gap-1 border-none bg-transparent p-0 outline-none focus-visible:ring-0 [&>svg]:hidden ${className}`}
       >
         <div className="flex w-full flex-col gap-1">
-          <span className="text-sm text-[#808080] text-start">{label}</span>
+          <span className="text-sm text-muted-foreground text-start">{label}</span>
           <div className="flex w-full items-center justify-between gap-2">
             <SelectValue className="text-base font-medium text-black" />
             <Image
